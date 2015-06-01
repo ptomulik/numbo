@@ -594,6 +594,9 @@ public:
     }
     {
       // a case which would yield a singular collocation matrix
+      // note, that Matlab behaves differently from the Fortran implementation
+      // in deBoor's book; in the Fortran a division by zero occur in this case
+      // whereas Matlab determines the singular collocation matrix
       const size_t  n = 6;
       const double  t[n+k]  = { 0.0, 0.0, 0.0,       0.5, 0.5, 0.5,           1.0, 1.0, 1.0 };
       const double  x[n]    = {           0.0, 0.3,       0.5,      0.6, 0.7, 1.0 };
@@ -602,7 +605,10 @@ public:
       size_t r = bspline_1d_nu_interp_spcol(k, n, t, x, md, d, mb, b);
       TS_ASSERT_EQUALS(r, n);
 
-      // Numbers taken from Matlab's call: spcol(t, 3, [0, 0.3, 0.5, 0.7, 0.1])
+      // Numbers taken from Matlab:
+      //
+      // t = [0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 1.0, 1.0, 1.0 ]
+      // spcol(t, 3, [0, 0.3, 0.5, 0.6, 0.7, 1.0])
       TS_ASSERT_EQUALS(b[0], 0.0);
       TS_ASSERT_EQUALS(b[1], 0.0);
       TS_ASSERT(same(b[2], 1.00));
