@@ -1,0 +1,15 @@
+//
+// @COPYRIGHT@
+// Licensed under MIT license (LICENSE.txt).
+//
+
+// $CLASS_PROTO_FILE
+
+package $CLASS_PROTO_PACKAGE;
+message $CLASS {
+  // TODO: put your message definition here
+}
+
+// vim: set expandtab tabstop=2 shiftwidth=2:
+// vim: set foldmethod=marker foldcolumn=4:
+// vim: set syntax=proto:

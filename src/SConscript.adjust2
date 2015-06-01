@@ -1,0 +1,115 @@
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+from SConsGnu.Cc import CanonCC, CanonCXX, QueryCCTarget, QueryCXXTarget
+from distutils import sysconfig
+
+#############################################################################
+# CC/CXX
+#############################################################################
+libdir = '%s' % env.Dir('lib').path
+env.AppendUnique(CPPPATH = [ '#%s' % libdir ])
+env.AppendUnique(LINKFLAGS = ['-Wl,-rpath-link=%s' % libdir])
+env.AppendUnique(LIBPATH = ['#%s' % libdir])
+#############################################################################
+
+#############################################################################
+# PROTOC
+#############################################################################
+#env.Append(PROTOCPROTOPATH = [ env.Dir('lib').srcnode().path ])
+#env.Append(PROTOCPROTOPATH = [ env.Dir('lib').path ])
+#############################################################################
+
+#############################################################################
+# SWIG
+#############################################################################
+swigflags = [
+    '-c++'
+]
+
+swigpath = [
+    '#%s' % env.Dir('lib').path,
+    '#%s' % env.Dir('lib/numbo/swig').path,
+    '/usr/include'
+]
+
+# Swig in general
+env.Append(SWIGFLAGS = swigflags)
+env.Append(SWIGPATH = swigpath)
+env.Append(SWIGPATH = [ '/usr/include' ])
+#############################################################################
+
+
+#############################################################################
+# SWIGPY
+#############################################################################
+# SWIGPY_SWIGPATH
+env.Append(SWIGPY_SWIGPATH = ['.'])
+env.Append(SWIGPY_SWIGPATH = ['#%s' % env.Dir('lib/numbo/python').path])
+env.Append(SWIGPY_SWIGPATH = ['#%s' % env.Dir('lib/numbo/swig/python').path])
+env.Append(SWIGPY_SWIGPATH = swigpath)
+#env.Append(SWIGPY_SWIGPATH = ['/usr/include'])
+
+# SWIGPY_SWIGFLAGS
+env.Append(SWIGPY_SWIGFLAGS = swigflags)
+
+# SWIGPY_CPPPATH
+env.Append(SWIGPY_CPPPATH = [ '#%s' % env.Dir('lib').path ])
+env.Append(SWIGPY_CPPPATH = [ '#%s' % env.Dir('lib/numbo/swig').path ])
+env.Append(SWIGPY_CPPPATH = sysconfig.get_python_inc())
+
+# CFLAGS and SWIGPY_CXXFLAGS
+env.SetDefault(SWIGPY_CFLAGS = env.get('CFLAGS',[])[:])
+env.SetDefault(SWIGPY_CXXFLAGS = env.get('CXXFLAGS',[])[:])
+
+swigver = tuple([int(n) for n in env.subst('$SWIGVERSION').split('.')])
+
+cc = CanonCC(env)
+if cc == 'gcc':
+    if '-Werror' in env['SWIGPY_CFLAGS']:
+        if env.get('CC_HAS_FLAG', {}).get('-Wmaybe-uninitialized'):
+            env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-maybe-uninitialized' ])
+        env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-unused-parameter' ])
+        env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-unused-label' ])
+        env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-deprecated-declarations' ])
+        env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-pedantic' ])
+elif cc  == 'clang':
+    if '-Werror' in env['SWIGPY_CFLAGS']:
+        env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-unused-label' ])
+        if env.get('CC_HAS_FLAG',{}).get('-Wdeprecated-declarations'):
+            env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-deprecated-declarations' ])
+        if env.get('CC_HAS_FLAG',{}).get('-Wunused-parameter'):
+            env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-unused-parameter' ])
+        if (swigver < (3,)) and env.get('CC_HAS_FLAG',{}).get('-Wdeprecated-register'):
+            env.AppendUnique(SWIGPY_CFLAGS = [ '-Wno-deprecated-register' ])
+
+cxx = CanonCXX(env)
+if cxx == 'g++':
+    if '-Werror' in env['SWIGPY_CXXFLAGS']:
+        if env.get('CXX_HAS_FLAG', {}).get('-Wmaybe-uninitialized'):
+            env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-maybe-uninitialized' ])
+        env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-unused-parameter' ])
+        env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-unused-label' ])
+        env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-deprecated-declarations' ])
+        env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-pedantic' ])
+elif cxx == 'clang++':
+    if '-Werror' in env['SWIGPY_CXXFLAGS']:
+        env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-unused-label' ])
+        if env.get('CXX_HAS_FLAG',{}).get('-Wdeprecated-declarations'):
+            env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-deprecated-declarations' ])
+        if env.get('CXX_HAS_FLAG',{}).get('-Wunused-parameter'):
+            env.AppendUnique(SWIGPY_CXXFLAGS = [ '-Wno-unused-parameter' ])
+        if (swigver < (3,)) and env.get('CXX_HAS_FLAG',{}).get('-Wdeprecated-register'):
+            env.AppendUnique(SWIGPY_CXXFLAGS =  ['-Wno-deprecated-register'])
+
+# SWIGPY_LIBPATH
+env.Append(SWIGPY_LIBPATH = [ '$LIBPATH' ])
+#############################################################################
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

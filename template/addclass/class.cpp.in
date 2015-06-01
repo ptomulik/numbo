@@ -1,0 +1,31 @@
+/*
+ * @COPYRIGHT@
+ * Licensed under MIT license (LICENSE.txt).
+ */
+
+// $CLASS_SOURCE_FILE
+
+/** // doc: $CLASS_SOURCE_FILE {{{
+ * \file $CLASS_SOURCE_FILE
+ * \todo Write documentation
+ */ // }}}
+#include <$CLASS_HEADER_FILE>
+
+$CLASS_OPEN_NAMESPACES
+$CLASS::
+$CLASS()
+{
+}
+
+$CLASS::
+~$CLASS()
+{
+}
+
+void $CLASS::
+foo()
+{
+}
+$CLASS_CLOSE_NAMESPACES
+// vim: set expandtab tabstop=2 shiftwidth=2:
+// vim: set foldmethod=marker foldcolumn=4:

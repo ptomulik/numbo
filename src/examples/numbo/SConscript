@@ -1,0 +1,17 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import(['env'])
+
+from SCons.Util import CLVar
+
+env.Program('bspline_1d_nu_bvalues1.cpp')
+env.Program('bspline_1d_nu_bvalues2.cpp')
+env.Program('bspline_1d_nu_interp_spcol1.cpp')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

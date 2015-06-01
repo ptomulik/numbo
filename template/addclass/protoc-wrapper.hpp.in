@@ -1,0 +1,50 @@
+/*
+ * @COPYRIGHT@
+ * Licensed under MIT license (LICENSE.txt).
+ */
+
+// numbo/protobuf/clinfo/platform_info.hpp
+
+/** // doc: numbo/protobuf/clinfo/platform_info.hpp {{{
+ * \file numbo/protobuf/clinfo/platform_info.hpp
+ * \todo Write documentation
+ */ // }}}
+#ifndef $PROTO_WRAPPER_HEADER_GUARD
+#define $PROTO_WRAPPER_HEADER_GUARD
+
+#include <$CLASS_HEADER_FILE>
+#include <$CLASS_PROTO_H_FILE>
+
+namespace Numbo {
+namespace Protobuf {
+
+/** // doc: write(buf,obj) {{{
+ * \todo Write documentation
+ */ // }}}
+void write($CLASS_PROTO_FQDN& buf,
+           $CLASS_FQDN const& obj);
+/** // doc: read(buf,obj) {{{
+ * \todo Write documentation
+ */ // }}}
+void read($CLASS_PROTO_FQDN const& buf,
+          $CLASS_FQDN& obj);
+
+} /* namesapce Protobuf */
+} /* namespace Numbo */
+
+/** doc: operator<< (buf,obj) {{{
+ * \todo Write documentation
+ */ // }}}
+$CLASS_PROTO_FQDN&
+operator<<($CLASS_PROTO_FQDN& buf,
+           $CLASS_FQDN const& obj);
+/** doc: operator>> (buf,obj) {{{
+ * \todo Write documentation
+ */ // }}}
+$CLASS_PROTO_FQDN const&
+operator>>($CLASS_PROTO_FQDN const& buf,
+           $CLASS_FQDN& obj);
+
+#endif /* $PROTO_WRAPPER_HEADER_GUARD  */
+// vim: set expandtab tabstop=2 shiftwidth=2:
+// vim: set foldmethod=marker foldcolumn=4:

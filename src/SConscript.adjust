@@ -1,0 +1,62 @@
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+import re
+import os
+from SConsGnu.Cc import CanonCC, CanonCXX
+from SConsGnu.Cc import QueryCCVersion, QueryCXXVersion, QueryCCTarget
+
+#############################################################################
+# Handle the situation when CC and/or CXX have changed.
+#############################################################################
+if 'CC' in env['CHANGED_VARIABLES']:
+    env['CCVERSION'] = QueryCCVersion(env)
+if 'CXX' in env['CHANGED_VARIABLES']:
+    env['CXXVERSION'] = QueryCXXVersion(env)
+
+#############################################################################
+# Adjusting C/C++ compiler flags for code coverage
+#############################################################################
+if re.match(r'^(yes|true|1)$', env.subst('$NUMBO_ENABLE_GCOV'), re.I):
+    # Remove optimization flags provided by user or given as defaults.
+    for f in ['CCFLAGS', 'CXXFLAGS', 'CFLAGS']:
+        for i in (0,1,2,3):
+            try:
+                env[f].remove('-O%d' % i)
+            except (KeyError, ValueError):
+                pass
+    env.Append( CCFLAGS = '-O0 --coverage' )
+    env.Append( LINKFLAGS = '--coverage' )
+
+    cc = CanonCC(env)
+    cxx = CanonCXX(env)
+    # Workaround for clang bug: http://llvm.org/bugs/show_bug.cgi?id=15953
+    if cc == 'clang':
+        if env['CCVERSION'].split('.')[0:2] == ['3','3']:
+            target =  QueryCCTarget(env)
+            if target:
+                try:
+                    cpu, vendor, system  = target.split('-')
+                    kernel = system
+                except ValueError:
+                    cpu, vendor, kernel, system  = target.split('-')
+                lib = 'clang_rt.profile-%s' % cpu
+                libf = 'lib%s.a' % lib
+                # Add known locations for other OSes
+                paths = [ '/usr/lib/llvm-3.3/lib/clang/3.3/lib/%s' % kernel ]
+                try:
+                    # find existing file libclang_rt.profile-<arch>.a
+                    path = next(p for p in paths if os.path.exists(os.path.join(p,libf)))
+                    env.AppendUnique(LIBS = [lib])
+                    env.AppendUnique(LIBPATH = [path])
+                except StopIteration:
+                    pass
+#############################################################################
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

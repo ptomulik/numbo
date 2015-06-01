@@ -1,0 +1,15 @@
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+# Recursion
+subdirs = [ 'numbo' ]
+scripts = [ '%s/SConscript' % s for s in subdirs ]
+SConscript( scripts, exports = ['env'] )
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

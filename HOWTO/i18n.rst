@@ -1,0 +1,82 @@
+HOWTO: maintain translations
+````````````````````````````
+
+
+Translations are maintained with gettext_ utilities. To automate
+things, we use scons_ `gettext tool`_, which is first included in version
+``2.2.0`` of scons.
+
+.. note::
+
+    You need at least version ``2.2.1`` of scons to mainain translations
+    properly. The version ``2.2.0`` has a bug, and is not usable for projects
+    with multiple ``po/`` directories.
+
+Translations are keept in files located under ``po/`` subdirectories in several
+places of the project, for example ``src/lib/numbo/app/clinfo/po/`` contains
+translations for the ``libnumbo_clinfo`` library for which the sources are
+located under ``src/lib/numbo/app/clinfo/``.
+
+Each ``po/`` subdirectory contains following files:
+
+=================   ==============================================================
+ File                Description
+=================   ==============================================================
+ ``POTFILES.in``     a list of source (e.g. ``.cpp``) files to extract
+                     translation strings from, the format is same as in
+                     automake based projects,
+-----------------   --------------------------------------------------------------
+ ``LINGUAS``         list of target languages to produce translations for; the
+                     format is same as in automake based projects,
+-----------------   --------------------------------------------------------------
+ ``messages.pot``    a template file with strings, that are to be translated;
+                     the ``messages.pot`` are updated when translation strings
+                     in source files (listed in ``POTFILES.in``) change,
+-----------------   --------------------------------------------------------------
+ ``.po`` files       several ``.po`` files being maintained, one per target
+                     language; the ``.po`` files are edited by translators
+                     (e.g. with poedit_) and updated by scons gettext tool when
+                     the ``messages.pot`` changes (when translation strings in
+                     source files change, for example),
+=================   ==============================================================
+
+The scons gettext tool maintains several ``.po`` files under ``po/`` directory,
+one file per language. Note, that the ``.po`` files are being updated by scons
+in source directory and **should be commited back** to source repository.
+
+The typical translator's activities are:
+
+- update particular ``.po`` file, e.g. ``src/lib/numbo/app/clinfo/po/pl.po``::
+
+      scons src/lib/numbo/app/clinfo/po/pl.po
+
+- update all translation files in project::
+
+      scons po-update
+
+- initialize new target language (new ``.po`` file), e.g. add "pl" language to
+  ``src/lib/numbo/app/clinfo/po/``::
+    
+      echo "pl" >> src/lib/numbo/app/clinfo/po/LINGUAS
+      scons po-update
+
+  and follow instructions printed by scons.
+
+- edit translations by editing particular ``.po`` file with poedit_
+
+Typical maintainer/developer activities:
+
+- add new source files to ``POTFILES.in``; actually all ``.cpp`` and ``.hpp``
+  files for given subpackage should be listed in ``POTFILES.in``,
+- updating ``messages.pot`` files in project (e.g. after changing the content
+  of ``POTFILES.in`` or after modifying internationalized strings in source
+  files)::
+
+        scons pot-update
+
+.. _gettext:  http://www.gnu.org/software/gettext/
+.. _scons:    http://scons.org/
+.. _gettext tool: http://scons.org/doc/production/HTML/scons-user.html#chap-gettext
+.. _poedit:   http://www.poedit.net/
+
+.. <!--- vim: set expandtab tabstop=2 shiftwidth=2 syntax=rst: -->

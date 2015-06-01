@@ -1,0 +1,24 @@
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+## --------------------------------------------------------------------------
+## NOTE: THIS PART (CONFIG CODE) MUST GO BEFORE THE NORMAL BUILD CODE
+if not env.GetOption('clean') and not env.GetOption('help'):
+    log = env.File('config.log').abspath
+    conf_dir = env.Dir('.sconf_temp').abspath
+    conf = env.Configure(conf_dir = conf_dir, log_file=log, config_h = 'config.h')
+    SConscript('SConscript.conf', exports = ['conf'])
+    env = conf.Finish()
+## --------------------------------------------------------------------------
+
+subdirs = [ 'ocl' ]
+scripts = [ '%s/SConscript' % s for s in subdirs ]
+SConscript(scripts, exports = ['env'])
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

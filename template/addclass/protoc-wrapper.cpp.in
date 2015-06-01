@@ -1,0 +1,54 @@
+/*
+ * @COPYRIGHT@
+ * Licensed under MIT license (LICENSE.txt).
+ */
+
+/** // doc: $PROTO_WRAPPER_SOURCE_FILE {{{
+ * \file $PROTO_WRAPPER_SOURCE_FILE
+ * \todo Write documentation
+ */ // }}}
+#include <$PROTO_WRAPPER_HEADER_FILE>
+
+namespace Numbo {
+namespace Protobuf {
+
+/* ------------------------------------------------------------------------ */
+void write($CLASS_PROTO_FQDN& buf,
+           $CLASS_FQDN const& obj)
+{
+  // TODO: implement the function
+  (void)buf;
+  (void)obj;
+}
+/* ------------------------------------------------------------------------ */
+void read($CLASS_PROTO_FQDN const& buf,
+          $CLASS_FQDN& obj)
+{
+  // TODO: implement the function
+  (void)buf;
+  (void)obj;
+}
+/* ------------------------------------------------------------------------ */
+
+} /* namesapce Protobuf */
+} /* namespace Numbo */
+
+/* ------------------------------------------------------------------------ */
+$CLASS_PROTO_FQDN&
+operator<<($CLASS_PROTO_FQDN& buf,
+           $CLASS_FQDN const& obj)
+{
+  Numbo::Protobuf::write(buf,obj);
+  return buf;
+}
+/* ------------------------------------------------------------------------ */
+$CLASS_PROTO_FQDN const&
+operator>>($CLASS_PROTO_FQDN const& buf,
+           $CLASS_FQDN& obj)
+{
+  Numbo::Protobuf::read(buf,obj);
+  return buf;
+}
+/* ------------------------------------------------------------------------ */
+// vim: set expandtab tabstop=2 shiftwidth=2:
+// vim: set foldmethod=marker foldcolumn=4:

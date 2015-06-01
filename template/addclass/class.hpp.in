@@ -1,0 +1,44 @@
+/*
+ * @COPYRIGHT@
+ * Licensed under MIT license (LICENSE.txt).
+ */
+
+// $CLASS_HEADER_FILE
+
+/** // doc: $CLASS_HEADER_FILE {{{
+ * \file $CLASS_HEADER_FILE
+ * \todo Write documentation
+ */ // }}}
+#ifndef $CLASS_HEADER_GUARD
+#define $CLASS_HEADER_GUARD
+
+$CLASS_OPEN_NAMESPACES
+
+/** // doc: class $CLASS {{{
+ * \todo Write documentation
+ */ // }}}
+class $CLASS
+{
+  template <class Archive>
+  friend void _serialize(Archive&, $CLASS&, const unsigned int)
+public:
+  static constexpr unsigned int class_version = 0x000001;
+  /** // doc: $CLASS() {{{
+   * \todo Write documentation
+   */ // }}}
+  $CLASS();
+  /** // doc: ~$CLASS() {{{
+   * \todo Write documentation for class $CLASS
+   */ // }}}
+  virtual ~$CLASS();
+  /** // doc: foo() {{{
+   * \todo Write documentation
+   */ // }}}
+  virtual void foo( ) ;
+};
+
+$CLASS_CLOSE_NAMESPACES
+
+#endif /* $CLASS_HEADER_GUARD */
+// vim: set expandtab tabstop=2 shiftwidth=2:
+// vim: set foldmethod=marker foldcolumn=4:

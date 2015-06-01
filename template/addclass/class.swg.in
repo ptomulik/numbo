@@ -1,0 +1,17 @@
+/*
+ * @COPYRIGHT@
+ * Licensed under MIT license (LICENSE.txt).
+ */
+
+/** // doc: $CLASS_SWIG_FILE {{{
+ * \file $CLASS_SWIG_FILE
+ * \todo Write documentation
+ */ // }}}
+
+%{
+#include <$CLASS_HEADER_FILE>
+%}
+%include <$CLASS_HEADER_FILE>
+
+// vim: set expandtab tabstop=2 shiftwidth=2:
+// vim: set foldmethod=marker foldcolumn=4:

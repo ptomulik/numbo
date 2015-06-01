@@ -1,0 +1,15 @@
+[submodule "site_scons/site_tools/doxygen"]
+	path = site_scons/site_tools/doxygen
+	url = ../scons_doxygen.git
+[submodule "site_scons/site_tools/doxyfile"]
+	path = site_scons/site_tools/doxyfile
+	url = ../scons-tool-doxyfile.git
+[submodule "site_scons/site_tools/cxxtest"]
+	path = site_scons/site_tools/cxxtest
+	url = ../scons-tool-cxxtest.git
+[submodule "lib/scons-gnu-build"]
+	path = lib/scons-gnu-build
+	url = ../scons-gnu-build.git
+[submodule "site_scons/site_tools/gcccov"]
+	path = site_scons/site_tools/gcccov
+	url = ../scons-tool-gcccov.git

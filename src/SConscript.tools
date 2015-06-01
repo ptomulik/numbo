@@ -1,0 +1,25 @@
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import('env')
+
+import os
+import re
+import SCons.Util
+import SConsGnu.Cc
+
+# Load all tools we use
+env.Tool('cxxtest')
+env.Tool('doxyfile')
+env.Tool('doxygen')
+env.Tool('gcccov')
+#env.Tool('protoc')
+#env.Tool('swig')
+#env.Tool('swigpy')
+#env.Tool('textfile')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

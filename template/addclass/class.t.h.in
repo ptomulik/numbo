@@ -1,0 +1,37 @@
+/*
+ * @COPYRIGHT@
+ * Licensed under MIT license (LICENSE.txt).
+ */
+
+// $CLASS_UNIT_TEST_HEADER_FILE
+
+/** // doc: $CLASS_UNIT_TEST_HEADER_FILE {{{
+ * \file $CLASS_UNIT_TEST_HEADER_FILE
+ * \todo Write documentation
+ */ // }}}
+#ifndef $CLASS_UNIT_TEST_HEADER_GUARD
+#define $CLASS_UNIT_TEST_HEADER_GUARD
+
+#include <cxxtest/TestSuite.h>
+#include <$CLASS_HEADER_FILE>
+
+$CLASS_UNIT_TEST_OPEN_NAMESPACES class $CLASS_UNIT_TEST; $CLASS_UNIT_TEST_CLOSE_NAMESPACES
+
+/** // doc: class $CLASS_UNIT_TEST_FQDN {{{
+ * \todo Write documentation
+ */ // }}}
+class $CLASS_UNIT_TEST_FQDN : public CxxTest::TestSuite
+{
+public:
+  /** // doc: test_foo() {{{
+   * \todo Write documentation
+   */ // }}}
+  void test_foo( )
+  {
+    TS_ASSERT(true);
+  }
+};
+
+#endif /* $CLASS_UNIT_TEST_HEADER_GUARD */
+// vim: set expandtab tabstop=2 shiftwidth=2:
+// vim: set foldmethod=marker foldcolumn=4:

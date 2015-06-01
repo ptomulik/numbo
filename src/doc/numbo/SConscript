@@ -1,0 +1,64 @@
+#
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import(['env'])
+
+doxyfile = env.Doxyfile(
+    INPUT                   = ['../../lib/numbo', '../../examples/numbo', '.'],
+    RECURSIVE               = True,
+    PROJECT_NAME            = "numbo",
+    PROJECT_NUMBER          = '0.1.0',
+    PROJECT_BRIEF           = 'Numerical Procedures for Multibody Systems Dynamics',
+    OUTPUT_DIRECTORY        = '.',
+    STRIP_FROM_PATH         = '../../..',
+    HTML_FOOTER             = env.File('footer.html'),
+    HTML_HEADER             = env.File('header.html'),
+    HTML_EXTRA_STYLESHEET   = env.File('custom.css'),
+    GENERATE_TREEVIEW       = True,
+    STRIP_FROM_INC_PATH     = ['../../lib', '../../examples'],
+    EXAMPLE_PATH            = '../../examples',
+    FILTER_PATTERNS         = { '*.cpp' : env.File('../../../bin/doxycppfilter'),
+                                '*.hpp' : env.File('../../../bin/doxycppfilter'),
+                                '*.h'   : env.File('../../../bin/doxycppfilter') },
+    FILTER_SOURCE_FILES     = True,
+    FILTER_SOURCE_PATTERNS  = { '*.cpp' : env.File('../../../bin/doxycppfilter'),
+                                '*.hpp' : env.File('../../../bin/doxycppfilter'),
+                                '*.h'   : env.File('../../../bin/doxycppfilter') },
+    ENUM_VALUES_PER_LINE    = 0,
+    ENABLE_PREPROCESSING    = True,
+    MACRO_EXPANSION         = True,
+    EXPAND_ONLY_PREDEF      = True,
+    PREDEFINED              = [ 'DOXYGEN',
+                                'CL_VERSION_1_0',
+                                'CL_VERSION_1_1',
+                                'CL_VERSION_1_2',
+                                'CL_CALLBACK=\"\"',
+                                'BOOST_CLASS_VERSION(__klass,__ver)=',
+                                'cl_khr_gl_sharing',
+                                'cl_khr_dx9_media_sharing',
+                                'cl_khr_d3d10_sharing',
+                                'cl_khr_d3d11_sharing',
+                                'HAVE_OPENCL_clCreateSubDevices',
+                                'HAVE_OPENCL_clRetainDevice',
+                                'HAVE_OPENCL_clReleaseDevice',
+                                'HAVE_OPENCL_clCreateProgramWithBuiltInKernels',
+                                'HAVE_OPENCL_clCompileProgram',
+                                'HAVE_OPENCL_clLinkProgram',
+                                'HAVE_OPENCL_clUnloadPlatformCompiler',
+                                '_WIN32' ]
+)
+
+doc = env.Doxygen(doxyfile)
+
+env.Clean('..', '.')
+env.Ignore('..', '.')
+env.Alias('api-doc', '.')
+tgt = env.AlwaysBuild(env.Alias('api-doc'))
+env.Depends(tgt, env.Glob('../../../bin/doxy*'))
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:
