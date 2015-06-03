@@ -1,0 +1,15 @@
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import(['env'])
+SConscript('numbo/SConscript', exports = ['env'])
+
+env.Alias('check')
+env.AlwaysBuild('check')
+env.Ignore('..','.')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

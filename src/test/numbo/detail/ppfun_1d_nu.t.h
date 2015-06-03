@@ -81,6 +81,245 @@ public:
       TS_ASSERT_EQUALS(ppfun_1d_nu_ppform_eval_aux(3, 3, c, 1, 1.5), 0.0);
     }
   }
+  /** // doc: test__ppfun_1d_nu_pprofm_search_gpulike__3() {{{
+   * \brief Test ppfun_1d_nu_pprofm_search_gpulike()
+   */ // }}}
+  void test__ppfun_1d_nu_pprofm_search_gpulike__3( )
+  {
+    double xi[] = { -INFINITY, 1.00, 2.00, +INFINITY };
+    int i;
+    int nd;
+
+    nd = 1;
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  -0.01, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.00, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.99, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.00, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.50, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.00, &i);
+    TS_ASSERT_EQUALS(i, 2);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.50, &i);
+    TS_ASSERT_EQUALS(i, 2);
+
+    nd = 2;
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  -0.01, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.00, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.99, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.00, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.50, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.00, &i);
+    TS_ASSERT_EQUALS(i, 2);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.50, &i);
+    TS_ASSERT_EQUALS(i, 2);
+    
+    nd = 3;
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  -0.01, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.00, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.99, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.00, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.50, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.00, &i);
+    TS_ASSERT_EQUALS(i, 2);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.50, &i);
+    TS_ASSERT_EQUALS(i, 2);
+
+    nd = 4;
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  -0.01, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.00, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.99, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.00, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.50, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.00, &i);
+    TS_ASSERT_EQUALS(i, 2);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.50, &i);
+    TS_ASSERT_EQUALS(i, 2);
+
+    nd = 5;
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  -0.01, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.00, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.99, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.00, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.50, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.00, &i);
+    TS_ASSERT_EQUALS(i, 2);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.50, &i);
+    TS_ASSERT_EQUALS(i, 2);
+
+    nd = 6;
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  -0.01, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.00, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.99, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.00, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.50, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.00, &i);
+    TS_ASSERT_EQUALS(i, 2);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.50, &i);
+    TS_ASSERT_EQUALS(i, 2);
+
+    nd = 3;
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  -0.01, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.00, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.99, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.00, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.50, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.00, &i);
+    TS_ASSERT_EQUALS(i, 2);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.50, &i);
+    TS_ASSERT_EQUALS(i, 2);
+
+    nd = 8;
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  -0.01, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.00, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.99, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.00, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.50, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.00, &i);
+    TS_ASSERT_EQUALS(i, 2);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.50, &i);
+    TS_ASSERT_EQUALS(i, 2);
+    
+    nd = 9;
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  -0.01, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.00, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  0.99, &i);
+    TS_ASSERT_EQUALS(i, 0);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.00, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  1.50, &i);
+    TS_ASSERT_EQUALS(i, 1);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.00, &i);
+    TS_ASSERT_EQUALS(i, 2);
+    i = -123;
+    ppfun_1d_nu_break_search_gpulike(nd, 3, xi,  2.50, &i);
+    TS_ASSERT_EQUALS(i, 2);
+  }
+  /** // doc: test__ppfun_1d_nu_pprofm_search_linear__3() {{{
+   * \brief Test ppfun_1d_nu_pprofm_search_linear()
+   */ // }}}
+  void test__ppfun_1d_nu_pprofm_search_linear__3( )
+  {
+    double xi[] = { 0.00, 1.00, 2.00 };
+    int i;
+
+    i = ppfun_1d_nu_break_search_linear(3, xi,  -0.01);
+    TS_ASSERT_EQUALS(i, 0);
+    i = ppfun_1d_nu_break_search_linear(3, xi,  0.00);
+    TS_ASSERT_EQUALS(i, 0);
+    i = ppfun_1d_nu_break_search_linear(3, xi,  0.99);
+    TS_ASSERT_EQUALS(i, 0);
+    i = ppfun_1d_nu_break_search_linear(3, xi,  1.00);
+    TS_ASSERT_EQUALS(i, 1);
+    i = ppfun_1d_nu_break_search_linear(3, xi,  1.50);
+    TS_ASSERT_EQUALS(i, 1);
+    i = ppfun_1d_nu_break_search_linear(3, xi,  2.00);
+    TS_ASSERT_EQUALS(i, 2);
+    i = ppfun_1d_nu_break_search_linear(3, xi,  2.50);
+    TS_ASSERT_EQUALS(i, 2);
+  }
 };
 
 #endif /* NUMBO_DETAIL_PPFUN_1D_NU_T_H_INCLUDED */

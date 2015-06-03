@@ -19,7 +19,7 @@ SConscript('SConscript.adjust2', exports = ['env'])
 env.GCovInjectObjectEmitters()
 
 # Load subordinary sconscripts
-subdirs = [ 'doc', 'examples', 'lib', 'app', 'test' ]
+subdirs = [ 'doc', 'examples', 'lib', 'app', 'test', 'bench' ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]
 SConscript( scripts, exports = ['env'] )
 

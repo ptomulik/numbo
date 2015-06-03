@@ -77,42 +77,48 @@ ppfun_1d_nu_ppform_eval_aux(int k, int j, CIter c, int s, H h)
 /** // doc: pprun_1d_nu_break_search_aux() {{{
  * \todo Write documentation
  */ // }}}
-template<typename XIIter, typename X, typename H>
+template<typename XIIter, typename X, typename I>
 void
-ppfun_1d_nu_break_search_aux(int nd, int id, int n, XIIIter xi, X x, H* h)
+ppfun_1d_nu_break_search_aux(int nd, int id, int n, XIIter xi, X x, I* i)
 {
-  typedef typename std::iterator_traits<CIter>::value_type XI;
-  int i;
+  typedef typename std::iterator_traits<XIIter>::value_type XI;
+  int ii;
   XI xii;
-  for(i = id; i < n-1; i += nd)
+  for(ii = id; ii < n; ii += nd)
     {
-      xii = xi[i];                // (1) - access to xi[i]
-      if(xii <= x && x < xi[i+1]) // (2) - access ti xi[i+1]
-        *h = x - xii;
+      if(xi[ii] <= x && x < xi[ii+1])
+        *i = ii;
     }
 }
 /** // doc: pprun_1d_nu_break_search_aux() {{{
  *
  */ // }}}
-template<typename XIIter, typename X, typename H>
+template<typename XIIter, typename X, typename I>
 void
-ppfun_1d_nu_break_search1(int nd, int n, XIIter xi, X x, H* h)
+ppfun_1d_nu_break_search_gpulike(int nd, int n, XIIter xi, X x, I* i)
 {
   int id;
-  if(x < xi[0])
-    {
-      *h = -1;
-      return;
-    }
-  if(x >= x[n-1])
-    {
-      *h = n-1;
-      return;
-    }
-
-  // Run nd threads (on GPU this is performed in parallel)
+  /* Run nd threads (on GPU this is performed in parallel) */
   for(id = 0; id < nd; ++id)
-    ppfun_1d_nu_break_search_aux(nd, id, n, xi, x, h);
+    ppfun_1d_nu_break_search_aux(nd, id, n, xi, x, i);
+}
+/** // doc: pprun_1d_nu_break_search_aux() {{{
+ *
+ */ // }}}
+template<typename XIIter, typename X>
+int
+ppfun_1d_nu_break_search_linear(int n, XIIter xi, X x)
+{
+  int i;
+  /* assumed, that xi is strictly increasing */
+  for(i = 0; i < n-1; ++i)
+    {
+      if(x < xi[i+1]) 
+        {
+          break;
+        }
+    }
+  return i;
 }
 /** @} */
 } } // end namespace Numbo::Detail
