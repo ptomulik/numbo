@@ -15,12 +15,12 @@
 #include <limits>
 #include <cmath>
 
-namespace Numbo { namespace Detail { class Bspline1dNuTestSuite; } }
+namespace numbo { namespace detail { class Bspline1dNuTestSuite; } }
 
-/** // doc: class Numbo::Bspline1dNuTestSuite {{{
+/** // doc: class numbo::Bspline1dNuTestSuite {{{
  * \todo Write documentation
  */ // }}}
-class Numbo::Detail::Bspline1dNuTestSuite : public CxxTest::TestSuite
+class numbo::detail::Bspline1dNuTestSuite : public CxxTest::TestSuite
 {
 protected:
   static bool same(double a, double b)

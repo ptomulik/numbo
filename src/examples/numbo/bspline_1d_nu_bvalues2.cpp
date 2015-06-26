@@ -7,7 +7,7 @@
 /** // doc: numbo/bspline_1d_nu_bvalues2.cpp {{{
  * \file numbo/bspline_1d_nu_bvalues2.cpp
  * \example numbo/bspline_1d_nu_bvalues2.cpp
- * \brief Usage example for \ref Numbo::Detail::bspline_1d_nu_bvalues()
+ * \brief Usage example for \ref numbo::detail::bspline_1d_nu_bvalues()
  */ // }}}
 
 // [Code]
@@ -121,7 +121,7 @@ int read_input(std::vector<double>& tv, std::vector<ptrdiff_t>& iv,
 
 // [Main]
 int main() {
-  using namespace Numbo::Detail;
+  using namespace numbo::detail;
 
   std::vector<double> tv;
   std::vector<ptrdiff_t> iv;

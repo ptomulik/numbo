@@ -14,7 +14,7 @@
 
 #include <iterator>
 
-namespace Numbo { namespace Detail {
+namespace numbo { namespace detail {
 /** \ingroup NumboPPFun_1d_nu
  * @{ */
 /** // doc: ppfun_1d_nu_ppform_eval_aux() {{{
@@ -121,7 +121,7 @@ ppfun_1d_nu_break_search_linear(int n, XIIter xi, X x)
   return i;
 }
 /** @} */
-} } // end namespace Numbo::Detail
+} } // end namespace numbo::detail
 
 #endif /* NUMBO_DETAIL_PPFUN_1D_NU_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

@@ -3,7 +3,7 @@
  * Licensed under MIT license (LICENSE.txt).
  */
 
-namespace Numbo {
+namespace numbo {
 /**
  * \defgroup NumboBsplines B-splines
  *
@@ -48,4 +48,4 @@ namespace Numbo {
  */
  
 /** @} */
-} // end namespace Numbo
+} // end namespace numbo

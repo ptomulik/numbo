@@ -3,17 +3,17 @@
  * Licensed under MIT license (LICENSE.txt).
  */
 
-/** // doc: numbo/ocl/kernels/ppfun_1d_nu.cpp {{{
- * \file numbo/ocl/kernels/ppfun_1d_nu.cpp
+/** // doc: numbo/opencl/kernels/ppfun_1d_nu.cpp {{{
+ * \file numbo/opencl/kernels/ppfun_1d_nu.cpp
  * \todo Write documentation
  */ // }}}
-#include <numbo/ocl/kernels/ppfun_1d_nu.hpp>
+#include <numbo/opencl/kernels/ppfun_1d_nu.hpp>
 #include <string>
 #include <iostream>
 
 int main()
 {
-  using namespace Numbo::Ocl::Kernels;
+  using namespace numbo::opencl::kernels;
   std::string s;
   generate_ppfun_1d_nu_ppform_eval(s, "double");
   std::cout << s << std::endl;

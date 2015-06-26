@@ -15,7 +15,7 @@
 #include <numbo/detail/opencl_c_substitute.hpp>
 #include <iterator>
 
-namespace Numbo { namespace Detail {
+namespace numbo { namespace detail {
 
 template<typename SeqIter, typename T>
 void algo_search_linear(int n, SeqIter seq, T x, int* pos)
@@ -41,7 +41,7 @@ void algo_search_linear(int n, SeqIter seq, T x, int* pos)
     }
 }
 
-} } // end namespace Numbo::Detail
+} } // end namespace numbo::detail
 
 #endif /* NUMBO_DETAIL_ALGO_SEARCH_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

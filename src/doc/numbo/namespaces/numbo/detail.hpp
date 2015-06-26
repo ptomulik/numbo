@@ -3,10 +3,10 @@
  * Licensed under MIT license (LICENSE.txt).
  */
 
-namespace Numbo {
+namespace numbo {
 /**
  * \brief Contains all the details of %numbo
  */
-namespace Detail {
+namespace detail {
 }
 }

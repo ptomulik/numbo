@@ -13,12 +13,12 @@
 #include <cxxtest/TestSuite.h>
 #include <numbo/detail/algo_search.hpp>
 
-namespace Numbo { namespace Detail { class AlgoSearchTestSuite; } }
+namespace numbo { namespace detail { class AlgoSearchTestSuite; } }
 
-/** // doc: class Numbo::Detail::AlgoSearchTestSuite {{{
+/** // doc: class numbo::detail::AlgoSearchTestSuite {{{
  * \todo Write documentation
  */ // }}}
-class Numbo::Detail::AlgoSearchTestSuite : public CxxTest::TestSuite
+class numbo::detail::AlgoSearchTestSuite : public CxxTest::TestSuite
 {
 public:
   /** // doc: test__algo_search_linear__01() {{{

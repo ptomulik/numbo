@@ -6,4 +6,4 @@
 /**
  * \brief Main namespace for all %numbo code
  */
-namespace Numbo { }
+namespace numbo { }

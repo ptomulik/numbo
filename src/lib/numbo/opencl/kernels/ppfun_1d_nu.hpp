@@ -3,10 +3,10 @@
  * Licensed under MIT license (LICENSE.txt).
  */
 
-// numbo/ocl/kernels/ppfun_1d_nu.hpp
+// numbo/opencl/kernels/ppfun_1d_nu.hpp
 
-/** // doc: numbo/ocl/kernels/ppfun_1d_nu.hpp {{{
- * \file numbo/ocl/kernels/ppfun_1d_nu.hpp
+/** // doc: numbo/opencl/kernels/ppfun_1d_nu.hpp {{{
+ * \file numbo/opencl/kernels/ppfun_1d_nu.hpp
  * \todo Write documentation
  */ // }}}
 #ifndef NUMBO_OCL_KERNELS_PPFUN_1D_NU_HPP_INCLUDED
@@ -14,7 +14,7 @@
 
 #include <string>
 
-namespace Numbo { namespace Ocl { namespace Kernels {
+namespace numbo { namespace opencl { namespace kernels {
 
 template<typename StringT>
 void generate_ppfun_1d_nu_ppform_eval(StringT& src, std::string const& numeric_string)
@@ -41,7 +41,7 @@ void generate_ppfun_1d_nu_ppform_eval(StringT& src, std::string const& numeric_s
   src.append("}\n");
   // end of body
 }
-} } } // end namespace Numbo::Ocl::Kernels
+} } } // end namespace numbo::opencl::kernels
 
 #endif /* NUMBO_OCL_KERNELS_PPFUN_1D_NU_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

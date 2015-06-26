@@ -13,12 +13,12 @@
 #include <cxxtest/TestSuite.h>
 #include <numbo/detail/ppfun_1d_nu.hpp>
 
-namespace Numbo { namespace Detail { class Ppfun1dNuTestSuite; } }
+namespace numbo { namespace detail { class Ppfun1dNuTestSuite; } }
 
-/** // doc: class Numbo::Detail::Ppfun1dNuTestSuite {{{
+/** // doc: class numbo::detail::Ppfun1dNuTestSuite {{{
  * \todo Write documentation
  */ // }}}
-class Numbo::Detail::Ppfun1dNuTestSuite : public CxxTest::TestSuite
+class numbo::detail::Ppfun1dNuTestSuite : public CxxTest::TestSuite
 {
 public:
   /** // doc: test__ppfun_1d_nu_ppform_eval_aux__1() {{{

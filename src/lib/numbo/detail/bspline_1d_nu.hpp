@@ -16,7 +16,7 @@
 #include <cstddef>
 #include <cmath>
 
-namespace Numbo { namespace Detail  {
+namespace numbo { namespace detail  {
 /** \ingroup NumboBsplines_1d_nu
  * @{ */
 /** // doc: bspline_1d_nu_deltas() {{{
@@ -519,7 +519,7 @@ size_t bspline_1d_nu_interp_spcol(size_t k, size_t n, TIter t, XIter x,
   return i;
 }
 /** @} */
-} } // end namespace Numbo::Detail
+} } // end namespace numbo::detail
 
 #endif /* NUMBO_DETAIL_BSPLINE_1D_NU_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

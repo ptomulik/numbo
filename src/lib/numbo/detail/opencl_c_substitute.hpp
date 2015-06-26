@@ -12,7 +12,7 @@
 #ifndef NUMBO_DETAIL_OPENCL_C_SUBSTITUTE_HPP_INCLUDED
 #define NUMBO_DETAIL_OPENCL_C_SUBSTITUTE_HPP_INCLUDED
 
-namespace Numbo { namespace Detail {
+namespace numbo { namespace detail {
 /** // doc: get_global_id() {{{
  * \todo Write documentation
  */ // }}}
@@ -29,7 +29,7 @@ get_global_size(unsigned int)
 {
   return 1;
 }
-} } // end namespace Numbo::Detail
+} } // end namespace numbo::detail
 
 #endif /* NUMBO_DETAIL_OPENCL_C_SUBSTITUTE_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:

@@ -17,7 +17,7 @@
 
 int main()
 {
-  using namespace Numbo::Detail;
+  using namespace numbo::detail;
 
   const size_t k = 4;
   const size_t n = 4;

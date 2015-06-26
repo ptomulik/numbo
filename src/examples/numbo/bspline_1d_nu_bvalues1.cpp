@@ -7,7 +7,7 @@
 /** // doc: numbo/unit.cpp {{{
  * \file numbo/bspline_1d_nu_bvalues1.cpp
  * \example numbo/bspline_1d_nu_bvalues1.cpp
- * \brief Usage example for \ref Numbo::Detail::bspline_1d_nu_bvalues()
+ * \brief Usage example for \ref numbo::detail::bspline_1d_nu_bvalues()
  */ // }}}
 
 // [Code]
@@ -16,7 +16,7 @@
 
 // [Main]
 int main() {
-  using namespace Numbo::Detail;
+  using namespace numbo::detail;
 
   //        i =    0,   1,   2,   3,   4,   5
   double t[6] = {0.0, 1.0, 2.0, 3.0, 4.0, 5.0}; // knots
