@@ -12,8 +12,6 @@
 #ifndef NUMBO_DETAIL_PPFUN_1D_NU_HPP_INCLUDED
 #define NUMBO_DETAIL_PPFUN_1D_NU_HPP_INCLUDED
 
-#include <iterator>
-
 namespace numbo { namespace detail {
 /** \ingroup NumboPPFun_1d_nu
  * @{ */
@@ -63,51 +61,44 @@ namespace numbo { namespace detail {
  * 1. de Boor, Carl. A practical Guide to Splines. Springer 2001. ISBN
  *    0-387-95366-3.
  */ // }}}
-template<typename CIter, typename H>
-typename std::iterator_traits<CIter>::value_type
-ppfun_1d_nu_ppform_eval_aux(int k, int j, CIter c, int s, H h) 
+template<typename T>
+T ppfun_1d_nu_ppform_eval_aux(int k, int j, T const* c, int s, T h) 
 {
-  typedef typename std::iterator_traits<CIter>::value_type C;
-  C v = (C)0;
+  T v = (T)0;
   int sm, sj = s*j, d = k - j;
   for(sm = s*(k - 1); sm >= sj; sm -= s, --d)
     v = (v/d)*h + c[sm];
   return v;
 }
-/** // doc: pprun_1d_nu_break_search_aux() {{{
+/** // doc: pprun_1d_nu_search_interval_aux() {{{
  * \todo Write documentation
  */ // }}}
-template<typename XIIter, typename X, typename I>
-void
-ppfun_1d_nu_break_search_aux(int nd, int id, int n, XIIter xi, X x, I* i)
+template<typename T, typename I>
+void ppfun_1d_nu_search_interval_aux(int nd, int id, int n, T const* xi, T x, I* i)
 {
-  typedef typename std::iterator_traits<XIIter>::value_type XI;
   int ii;
-  XI xii;
   for(ii = id; ii < n; ii += nd)
     {
       if(xi[ii] <= x && x < xi[ii+1])
         *i = ii;
     }
 }
-/** // doc: pprun_1d_nu_break_search_aux() {{{
+/** // doc: pprun_1d_nu_search_interval_aux() {{{
  *
  */ // }}}
-template<typename XIIter, typename X, typename I>
-void
-ppfun_1d_nu_break_search_gpulike(int nd, int n, XIIter xi, X x, I* i)
+template<typename T, typename I>
+void ppfun_1d_nu_search_interval_gpulike(int nd, int n, T const* xi, T x, I* i)
 {
   int id;
   /* Run nd threads (on GPU this is performed in parallel) */
   for(id = 0; id < nd; ++id)
-    ppfun_1d_nu_break_search_aux(nd, id, n, xi, x, i);
+    ppfun_1d_nu_search_interval_aux(nd, id, n, xi, x, i);
 }
-/** // doc: pprun_1d_nu_break_search_aux() {{{
+/** // doc: pprun_1d_nu_search_interval_aux() {{{
  *
  */ // }}}
-template<typename XIIter, typename X>
-int
-ppfun_1d_nu_break_search_linear(int n, XIIter xi, X x)
+template<typename T>
+int ppfun_1d_nu_search_interval_linear(int n, T const* xi, T x)
 {
   int i;
   /* assumed, that xi is strictly increasing */

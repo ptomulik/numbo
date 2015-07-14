@@ -41,6 +41,18 @@ void generate_ppfun_1d_nu_ppform_eval(StringT& src, std::string const& numeric_s
   src.append("}\n");
   // end of body
 }
+template<typename StringT>
+void generate_ppfun_1d_nu_search_interval_aux(StringT& src, std::string const& numeric_string)
+{
+  // return type
+  src.append("void\n");
+  // name
+  src.append("ppfun_1d_nu_search_interval_aux");
+  // arguments
+  src.append("(");
+  src.append("int nd, int id, int n1, ");
+  src.append(")");
+}
 } } } // end namespace numbo::opencl::kernels
 
 #endif /* NUMBO_OCL_KERNELS_PPFUN_1D_NU_HPP_INCLUDED */
