@@ -1,0 +1,27 @@
+
+# @COPYRIGHT@
+# Licensed under MIT license (LICENSE.txt).
+
+Import(['env'])
+
+from SCons.Util import CLVar
+
+tests = [
+    'opencl/util/type_to_string.t.h',
+    'opencl/kernels/ppfun_1d_nu.t.h',
+]
+
+env.CxxTest('../check-libnumbo_opencl', tests,
+           LIBS = CLVar(),
+           CXXTEST_CPPPATH = ['..'],
+           CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
+           CXXTEST_TARGET = 'check-libnumbo_opencl')
+
+env.Alias('check', [ 'check-libnumbo_opencl' ])
+env.AlwaysBuild('check-libnumbo_opencl')
+
+# Local Variables:
+# # tab-width:4
+# # indent-tabs-mode:nil
+# # End:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4:

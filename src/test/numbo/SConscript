@@ -8,6 +8,7 @@ from SCons.Util import CLVar
 SConscript('SConscript.libnumbo_bsplines', exports = ['env'])
 SConscript('SConscript.libnumbo_ppfun', exports = ['env'])
 SConscript('SConscript.libnumbo_algo', exports = ['env'])
+SConscript('SConscript.libnumbo_opencl', exports = ['env'])
 
 # Local Variables:
 # # tab-width:4
