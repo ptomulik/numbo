@@ -3,11 +3,11 @@
  * Licensed under MIT license (LICENSE.txt).
  */
 
-/** // doc: unit.cpp {{{
- * \file unit.cpp
+/** // doc: numbo/unit.cpp {{{
+ * \file numbo/unit.cpp
  * \todo Write documentation
  */ // }}}
-#include <unit.hpp>
+#include <numbo/unit.hpp>
 
 // TODO:
 // 1. Replace unit.cpp with your unit name

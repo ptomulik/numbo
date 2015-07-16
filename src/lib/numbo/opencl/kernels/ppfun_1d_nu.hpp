@@ -13,9 +13,12 @@
 #define NUMBO_OCL_KERNELS_PPFUN_1D_NU_HPP_INCLUDED
 
 #include <numbo/opencl/util/type_to_string.hpp>
+#include <clxx/context.hpp>
+#include <clxx/program.hpp>
+#include <map>
 
 namespace numbo { namespace opencl { namespace kernels {
-
+#if 0
 template<typename SourceT>
 void generate_ppfun_1d_nu_ppform_eval(SourceT& src, std::string const& floating_string)
 {
@@ -41,7 +44,7 @@ void generate_ppfun_1d_nu_ppform_eval(SourceT& src, std::string const& floating_
   src.append("}\n");
   // end of body
 }
-
+#endif
 template<typename SourceT> void
 generate_ppfun_1d_nu_search_interval_lin(SourceT& src,
                                          std::string const& floating,
@@ -126,7 +129,7 @@ struct ppfun_1d_nu
   static std::string
   program_name()
   {
-    return "ppfun<_1d,non_uniform," + FloatingToS::apply() + "," + IntegralToS::apply() + ">";
+    return "ppfun_1d_nu<" + FloatingToS::apply() + "," + IntegralToS::apply() + ">";
   }
 
   template<typename SourceT>
@@ -140,6 +143,25 @@ struct ppfun_1d_nu
     generate_ppfun_1d_nu_search_interval_lin_cuda_cc1(src, floating, integral);
     generate_ppfun_1d_nu_search_interval_dca(src, floating, integral);
   }
+
+  clxx::program
+  instance(clxx::context const& context)
+  {
+    static std::map<clxx::context, clxx::program> instances;
+    try {
+      return instances.at(context);
+    } catch(std::out_of_range const&) {
+      // duck stepping...
+    }
+    // ok, we have to create new one
+    clxx::program_source source;
+    generate_program_source(source);
+    clxx::program_sources sources = { source };
+    clxx::program program(context, sources);
+    instances[context] = program;
+    return program;
+  }
+  
 };
 
 } } } // end namespace numbo::opencl::kernels

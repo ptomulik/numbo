@@ -13,12 +13,12 @@
 #include <cxxtest/TestSuite.h>
 #include <numbo/opencl/kernels/ppfun_1d_nu.hpp>
 
-namespace numbo { namespace opencl { namespace kernels { class Ppfun1dNuTestSuite; } } }
+namespace numbo { namespace opencl { namespace kernels { class ppfun_1d_nu_TestSuite; } } }
 
-/** // doc: class numbo::opencl::kernels::Ppfun1dNuTestSuite {{{
+/** // doc: class numbo::opencl::kernels::ppfun_1d_nu_TestSuite {{{
  * \todo Write documentation
  */ // }}}
-class numbo::opencl::kernels::Ppfun1dNuTestSuite : public CxxTest::TestSuite
+class numbo::opencl::kernels::ppfun_1d_nu_TestSuite : public CxxTest::TestSuite
 {
 public:
 
@@ -97,12 +97,9 @@ public:
 
   void test__ppfun_1d_nu__program_name__1( )
   {
-    TS_ASSERT_EQUALS((ppfun_1d_nu<cl_float,cl_uint>::program_name()),
-                     "ppfun<_1d,non_uniform,float,uint>");
-    TS_ASSERT_EQUALS((ppfun_1d_nu<cl_double,cl_uint>::program_name()),
-                     "ppfun<_1d,non_uniform,double,uint>");
-    TS_ASSERT_EQUALS((ppfun_1d_nu<cl_float,cl_ulong>::program_name()),
-                     "ppfun<_1d,non_uniform,float,ulong>");
+    TS_ASSERT_EQUALS((ppfun_1d_nu<cl_float>::program_name()), "ppfun_1d_nu<float,uint>");
+    TS_ASSERT_EQUALS((ppfun_1d_nu<cl_float,cl_uint>::program_name()), "ppfun_1d_nu<float,uint>");
+    TS_ASSERT_EQUALS((ppfun_1d_nu<cl_double,cl_ulong>::program_name()), "ppfun_1d_nu<double,ulong>");
   }
 
   void test__pprin_1d_nu__generate_program_source__1()
