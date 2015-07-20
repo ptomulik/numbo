@@ -95,14 +95,7 @@ public:
     );
   }
 
-  void test__ppfun_1d_nu__program_name__1( )
-  {
-    TS_ASSERT_EQUALS((ppfun_1d_nu<cl_float>::program_name()), "ppfun_1d_nu<float,uint>");
-    TS_ASSERT_EQUALS((ppfun_1d_nu<cl_float,cl_uint>::program_name()), "ppfun_1d_nu<float,uint>");
-    TS_ASSERT_EQUALS((ppfun_1d_nu<cl_double,cl_ulong>::program_name()), "ppfun_1d_nu<double,ulong>");
-  }
-
-  void test__pprin_1d_nu__generate_program_source__1()
+  void test__ppfun_1d_nu__generate_program_source__1()
   {
     const std::string floating = util::type_to_string<cl_float, util::floating_type_tag>::apply();
     const std::string integral = util::type_to_string<cl_uint, util::integral_type_tag>::apply();
@@ -115,14 +108,13 @@ public:
     generate_ppfun_1d_nu_search_interval_dca(src2, floating, integral);
 
     //
-    ppfun_1d_nu<cl_float, cl_uint>::generate_program_source(src1);
+    ppfun_1d_nu<cl_float, cl_uint>::instance().generate_program_source(src1);
     TS_ASSERT(src1.size() <= (ppfun_1d_nu<cl_float, cl_uint>::program_source_estimated_size));
     TS_ASSERT_EQUALS(src1, src2);
-    //
-    src1.clear();
-    ppfun_1d_nu<cl_float>::generate_program_source(src1);
-    TS_ASSERT(src1.size() <= (ppfun_1d_nu<cl_float, cl_uint>::program_source_estimated_size));
-    TS_ASSERT_EQUALS(src1, src2);
+  }
+
+  void test__ppfun_1d_nu__get__1()
+  {
   }
 };
 

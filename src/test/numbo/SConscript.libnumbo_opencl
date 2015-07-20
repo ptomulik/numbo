@@ -12,7 +12,7 @@ tests = [
 ]
 
 env.CxxTest('../check-libnumbo_opencl', tests,
-           LIBS = CLVar(),
+           LIBS = CLVar('clxx_cl'),
            CXXTEST_CPPPATH = ['..'],
            CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
            CXXTEST_TARGET = 'check-libnumbo_opencl')

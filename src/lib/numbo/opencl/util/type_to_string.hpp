@@ -12,7 +12,7 @@
 #ifndef NUMBO_OPENCL_UTIL_TYPE_TO_STRING_HPP_INCLUDED
 #define NUMBO_OPENCL_UTIL_TYPE_TO_STRING_HPP_INCLUDED
 
-#include <clxx/types.hpp>
+#include <clxx/common/types.hpp>
 #include <string>
 
 namespace numbo { namespace opencl { namespace util {

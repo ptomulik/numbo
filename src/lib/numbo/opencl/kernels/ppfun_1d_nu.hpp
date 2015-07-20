@@ -13,9 +13,7 @@
 #define NUMBO_OCL_KERNELS_PPFUN_1D_NU_HPP_INCLUDED
 
 #include <numbo/opencl/util/type_to_string.hpp>
-#include <clxx/context.hpp>
-#include <clxx/program.hpp>
-#include <map>
+#include <numbo/opencl/program_lazy_generator.hpp>
 
 namespace numbo { namespace opencl { namespace kernels {
 #if 0
@@ -119,22 +117,18 @@ generate_ppfun_1d_nu_search_interval_dca(SourceT& src,
 }
 
 template<typename FloatingT, typename IntegralT = cl_uint>
-struct ppfun_1d_nu
+class ppfun_1d_nu
+  : program_lazy_generator< ppfun_1d_nu<FloatingT, IntegralT> >
 {
-  static constexpr size_t program_source_estimated_size = 1800ul;
+public:
+  typedef program_lazy_generator< ppfun_1d_nu<FloatingT, IntegralT> > generator_base_type;
+  using generator_base_type::instance;
 
+  static constexpr size_t program_source_estimated_size = 1800ul;
   using FloatingToS = util::type_to_string<FloatingT, util::floating_type_tag>;
   using IntegralToS = util::type_to_string<IntegralT, util::integral_type_tag>;
 
-  static std::string
-  program_name()
-  {
-    return "ppfun_1d_nu<" + FloatingToS::apply() + "," + IntegralToS::apply() + ">";
-  }
-
-  template<typename SourceT>
-  static void
-  generate_program_source(SourceT& src)
+  void generate_program_source(clxx::program_source& src) const
   {
     const std::string floating = FloatingToS::apply();
     const std::string integral = IntegralToS::apply();
@@ -143,25 +137,6 @@ struct ppfun_1d_nu
     generate_ppfun_1d_nu_search_interval_lin_cuda_cc1(src, floating, integral);
     generate_ppfun_1d_nu_search_interval_dca(src, floating, integral);
   }
-
-  clxx::program
-  instance(clxx::context const& context)
-  {
-    static std::map<clxx::context, clxx::program> instances;
-    try {
-      return instances.at(context);
-    } catch(std::out_of_range const&) {
-      // duck stepping...
-    }
-    // ok, we have to create new one
-    clxx::program_source source;
-    generate_program_source(source);
-    clxx::program_sources sources = { source };
-    clxx::program program(context, sources);
-    instances[context] = program;
-    return program;
-  }
-  
 };
 
 } } } // end namespace numbo::opencl::kernels
