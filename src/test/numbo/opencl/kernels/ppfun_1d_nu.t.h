@@ -108,7 +108,7 @@ public:
     generate_ppfun_1d_nu_search_interval_dca(src2, floating, integral);
 
     //
-    ppfun_1d_nu<cl_float, cl_uint>::instance().generate_program_source(src1);
+    ppfun_1d_nu<cl_float, cl_uint>::generate_program_source(src1);
     TS_ASSERT(src1.size() <= (ppfun_1d_nu<cl_float, cl_uint>::program_source_estimated_size));
     TS_ASSERT_EQUALS(src1, src2);
   }

@@ -13,7 +13,7 @@
 #define NUMBO_OCL_KERNELS_PPFUN_1D_NU_HPP_INCLUDED
 
 #include <numbo/opencl/util/type_to_string.hpp>
-#include <numbo/opencl/program_lazy_generator.hpp>
+#include <numbo/opencl/program_generator.hpp>
 
 namespace numbo { namespace opencl { namespace kernels {
 #if 0
@@ -118,17 +118,17 @@ generate_ppfun_1d_nu_search_interval_dca(SourceT& src,
 
 template<typename FloatingT, typename IntegralT = cl_uint>
 class ppfun_1d_nu
-  : program_lazy_generator< ppfun_1d_nu<FloatingT, IntegralT> >
+  : program_generator< ppfun_1d_nu<FloatingT, IntegralT> >
 {
 public:
-  typedef program_lazy_generator< ppfun_1d_nu<FloatingT, IntegralT> > generator_base_type;
-  using generator_base_type::instance;
+  typedef program_generator< ppfun_1d_nu<FloatingT, IntegralT> > base_type;
+  using base_type::get;
 
   static constexpr size_t program_source_estimated_size = 1800ul;
   using FloatingToS = util::type_to_string<FloatingT, util::floating_type_tag>;
   using IntegralToS = util::type_to_string<IntegralT, util::integral_type_tag>;
 
-  void generate_program_source(clxx::program_source& src) const
+  static void generate_program_source(clxx::program_source& src)
   {
     const std::string floating = FloatingToS::apply();
     const std::string integral = IntegralToS::apply();
