@@ -12,6 +12,7 @@
 #ifndef NUMBO_OPENCL_PROGRAM_GENERATOR_HPP_INCLUDED
 #define NUMBO_OPENCL_PROGRAM_GENERATOR_HPP_INCLUDED
 
+#include <numbo/opencl/env.hpp>
 #include <clxx/cl/program.hpp>
 #include <clxx/cl/context.hpp>
 #include <map>
@@ -90,6 +91,7 @@ protected:
     Derived::generate_program_source(src);
     clxx::program program(context, clxx::program_sources{src});
     clxx::build_program(program, "");
+    return program;
   }
 public:
   /** // doc: get(context,force_generate) {{{
