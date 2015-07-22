@@ -3,18 +3,18 @@
  * Licensed under MIT license (LICENSE.txt).
  */
 
-// numbo/opencl/kernels/bspline_1d_nu.hpp
+// numbo/opencl/programs/bspline_1d_nu.hpp
 
-/** // doc: numbo/opencl/kernels/bspline_1d_nu.hpp {{{
- * \file numbo/opencl/kernels/bspline_1d_nu.hpp
+/** // doc: numbo/opencl/programs/bspline_1d_nu.hpp {{{
+ * \file numbo/opencl/programs/bspline_1d_nu.hpp
  * \todo Write documentation
  */ // }}}
-#ifndef NUMBO_OCL_KERNELS_BSPLINE_1D_NU_HPP_INCLUDED
-#define NUMBO_OCL_KERNELS_BSPLINE_1D_NU_HPP_INCLUDED
+#ifndef NUMBO_OPENCL_PROGRAMS_BSPLINE_1D_NU_HPP_INCLUDED
+#define NUMBO_OPENCL_PROGRAMS_BSPLINE_1D_NU_HPP_INCLUDED
 
 #include <string>
 
-namespace numbo { namespace opencl { namespace kernels {
+namespace numbo { namespace opencl { namespace programs {
 
 template<typename StringT>
 void generate_bspline_1d_nu_1p_deltas(StringT& src, std::string const& numeric_string)
@@ -68,8 +68,8 @@ void generate_bspline_1d_nu_np_deltas(StringT& src, std::string const& numeric_s
   // end of body
 }
 
-} } } // end namespace numbo::opencl::kernels
+} } } // end namespace numbo::opencl::programs
 
-#endif /* NUMBO_OCL_KERNELS_BSPLINE_1D_NU_HPP_INCLUDED */
+#endif /* NUMBO_OPENCL_PROGRAMS_BSPLINE_1D_NU_HPP_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
 // vim: set foldmethod=marker foldcolumn=4:

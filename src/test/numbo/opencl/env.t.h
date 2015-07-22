@@ -12,6 +12,8 @@
 
 #include <cxxtest/TestSuite.h>
 #include <numbo/opencl/env.hpp>
+#include <clxx/cl/platform_layer.hpp>
+#include <clxx/cl/context.hpp>
 
 namespace numbo { namespace opencl { class env_test_suite; } }
 
@@ -20,6 +22,12 @@ namespace numbo { namespace opencl { class env_test_suite; } }
  */ // }}}
 class numbo::opencl::env_test_suite : public CxxTest::TestSuite
 {
+  clxx::context new_context() const
+  {
+    clxx::platform_layer platform_layer{ clxx::device_type_t::all };
+    clxx::platform platform{ platform_layer.get_platforms()[0] };
+    return clxx::context(clxx::make_context_properties(), platform_layer.get_devices(platform));
+  }
 public:
   /** // doc: test__default_ctor__1() {{{
    * \todo Write documentation
@@ -33,17 +41,19 @@ public:
    */ // }}}
   void test__build_options__1( )
   {
-    TS_ASSERT_THROWS(env().build_options(clxx::context{(cl_context)0x1234}), std::out_of_range);
+    clxx::context c{ new_context() };
+    TS_ASSERT(!env{}.has_build_options(c));
+    TS_ASSERT_THROWS(env{}.build_options(c), std::out_of_range);
   }
   /** // doc: test__push_build_options__1() {{{
    * \todo Write documentation
    */ // }}}
   void test__push_build_options__1( )
   {
-    clxx::context c{(cl_context)0x1234};
+    clxx::context c{new_context()};
     env e;
     e.push_build_options("-cl-nv-verbose", c);
-    TS_ASSERT_EQUALS(e.build_options(c), "-cl_nv_verbose");
+    TS_ASSERT_EQUALS(e.build_options(c), "-cl-nv-verbose");
     TS_ASSERT_EQUALS(e.build_options(), "");
   }
   /** // doc: test__pop_build_options__1() {{{
@@ -51,7 +61,7 @@ public:
    */ // }}}
   void test__pop_build_options__1( )
   {
-    clxx::context c{(cl_context)0x1234};
+    clxx::context c{new_context()};
     env e;
     e.push_build_options("-cl-nv-verbose", c);
     TS_ASSERT_THROWS_NOTHING(e.pop_build_options(c));

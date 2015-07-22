@@ -12,10 +12,12 @@
 #ifndef NUMBO_OPENCL_ENV_HPP_INCLUDED
 #define NUMBO_OPENCL_ENV_HPP_INCLUDED
 
+#include <numbo/opencl/program_generator.hpp>
 #include <clxx/cl/context.hpp>
 #include <stack>
 //#include <vector>
 #include <string>
+#include <memory>
 #include <map>
 
 namespace numbo { namespace opencl {
@@ -25,11 +27,15 @@ namespace numbo { namespace opencl {
 class env
 {
 public:
-  /** // doc: build_options_stack_type {{{
+  /** // doc: programs_map_t {{{
+   * \todo Write documentation
+   */ // }}}
+  typedef std::map<std::string, std::unique_ptr<program_generator> > programs_map_t;
+  /** // doc: build_options_stack_t {{{
    * \todo Write documentation
    */ // }}}
   typedef std::stack<std::string> build_options_stack_t;
-  /** // doc: build_options_map_type {{{
+  /** // doc: build_options_map_t {{{
    * \todo Write documentation
    */ // }}}
   typedef std::map<clxx::context, build_options_stack_t> build_options_map_t;
@@ -38,6 +44,7 @@ public:
    * \todo Write documentation
    */ // }}}
   inline env()
+    : _build_options()
   { 
     // default options for default context
     push_build_options("");
@@ -109,7 +116,7 @@ public:
   inline bool
   has_build_options(clxx::context const& context = clxx::context()) const
   {
-    return (_build_options.count(context) != 0);
+    return (this->_build_options.count(context) != 0);
   }
 public:
   /** // doc: root() {{{
@@ -123,6 +130,7 @@ public:
     return obj;
   }
 private:
+  programs_map_t _programs;
   build_options_map_t _build_options;
 };
 } } // end namespace numbo::opencl

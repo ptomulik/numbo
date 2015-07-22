@@ -91,13 +91,6 @@ public:
   {
     TS_ASSERT_EQUALS(type_to_string<cl_double>::apply(), "double");
   }
-  /** // doc: test__type_to_string__half() {{{
-   * \todo Write documentation
-   */ // }}}
-  void test__type_to_string__half( )
-  {
-    TS_ASSERT_EQUALS((type_to_string<cl_half, floating_type_tag>::apply()), "half");
-  }
 };
 
 #endif /* NUMBO_OPENCL_UTIL_TYPE_TO_STRING_T_H_INCLUDED */

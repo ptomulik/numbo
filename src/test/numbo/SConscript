@@ -5,10 +5,25 @@ Import(['env'])
 
 from SCons.Util import CLVar
 
-SConscript('SConscript.libnumbo_bsplines', exports = ['env'])
-SConscript('SConscript.libnumbo_ppfun', exports = ['env'])
-SConscript('SConscript.libnumbo_algo', exports = ['env'])
-SConscript('SConscript.libnumbo_opencl', exports = ['env'])
+tests = [
+    'detail/algo_search.t.h',
+#    'detail/bspline_1d_nu.t.h',
+    'detail/ppfun_1d_nu.t.h',
+    'opencl/env.t.h',
+    'opencl/util/type_to_string.t.h',
+    'opencl/program_generator.t.h',
+    'opencl/programs/search_interval.t.h',
+#    'opencl/programs/ppfun_1d_nu.t.h',
+]
+
+env.CxxTest('../check-libnumbo', tests,
+           LIBS = CLVar('clxx_cl'),
+           CXXTEST_CPPPATH = ['..'],
+           CXXTEST_LIBPATH = env.get('LIBPATH', CLVar()),
+           CXXTEST_TARGET = 'check-libnumbo')
+
+env.Alias('check', [ 'check-libnumbo' ])
+env.AlwaysBuild('check-libnumbo')
 
 # Local Variables:
 # # tab-width:4

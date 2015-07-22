@@ -3,7 +3,7 @@
 
 Import('env')
 
-subdirs = [ 'kernels' ]
+subdirs = [ ]
 scripts = [ '%s/SConscript' % s for s in subdirs ]
 SConscript(scripts, exports = ['env'])
 

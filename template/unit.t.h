@@ -13,22 +13,18 @@
 #include <cxxtest/TestSuite.h>
 #include <numbo/unit.hpp>
 
+/** \cond DOXYGEN_SHOW_UNIT_TESTS */
 namespace numbo { class unit_test_suite; }
 
-/** // doc: class numbo::unit_test_suite {{{
- * \todo Write documentation
- */ // }}}
 class numbo::unit_test_suite : public CxxTest::TestSuite
 {
 public:
-  /** // doc: test__foo() {{{
-   * \todo Write documentation
-   */ // }}}
   void test__foo( )
   {
     TS_ASSERT(true);
   }
 };
+/** \endcond */
 
 #endif /* NUMBO_UNIT_T_H_INCLUDED */
 // vim: set expandtab tabstop=2 shiftwidth=2:
