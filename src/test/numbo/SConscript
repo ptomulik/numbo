@@ -11,7 +11,6 @@ tests = [
     'detail/ppfun_1d_nu.t.h',
     'opencl/env.t.h',
     'opencl/util/type_to_string.t.h',
-    'opencl/program_generator.t.h',
     'opencl/programs/search_interval.t.h',
 #    'opencl/programs/ppfun_1d_nu.t.h',
 ]

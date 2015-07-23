@@ -91,29 +91,30 @@ class search_interval
   : public program_generator
 {
 public:
-  size_t
-  estimated_program_size() const
-  {
-     return 1800ul;
-  }
+  size_t estimated_program_size() const { return 1800ul; }
 
   std::string
   program_name() const
   {
     const std::string value = util::type_to_string<ValueT>::apply();
     const std::string index = util::type_to_string<IndexT>::apply();
-    return std::string("search_interval__T__") + value + "__" + index;
+    return std::string("search_interval<") + value + "," + index + ">";
+  }
+
+  std::string
+  program_file() const
+  {
+    const std::string value = util::type_to_string<ValueT>::apply();
+    const std::string index = util::type_to_string<IndexT>::apply();
+    return std::string("search_interval__") + value + "__" + index + program_file_suffix();
   }
 
   void
-  generate_source(clxx::program_source& src) const
+  generate_program_body(std::string& src) const
   {
     const std::string value = util::type_to_string<ValueT>::apply();
     const std::string index = util::type_to_string<IndexT>::apply();
 
-    src.reserve(src.size() + estimated_program_size());
-
-    generate_line_directive(src,1);
     generate_search_interval_lin(src, value, index);
     generate_search_interval_lin_cuda_cc1(src, value, index);
     generate_search_interval_dca(src, value, index);

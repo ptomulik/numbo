@@ -106,33 +106,46 @@ public:
     );
   }
 
-  void test__search_interval__generate_source__1()
+  void test__program_name__1()
+  {
+    search_interval<cl_float, cl_uint> g;
+    TS_ASSERT_EQUALS(g.program_name(), "search_interval<float,uint>");
+  }
+
+  void test__program_file__1()
+  {
+    search_interval<cl_float, cl_uint> g;
+    TS_ASSERT_EQUALS(g.program_file(), "search_interval__float__uint" + g.program_file_suffix());
+  }
+
+  void test__search_interval__generate_program_source__1()
   {
     const std::string floating = util::type_to_string<cl_float>::apply();
     const std::string integral = util::type_to_string<cl_uint>::apply();
 
     std::string src1;
-    search_interval<cl_float, cl_uint> generator;
+    search_interval<cl_float, cl_uint> g;
 
-    generator.generate_source(src1);
+    g.generate_program_source(src1);
 
     std::string src2;
-    src2.append("#line 1 \"numbo/search_interval__T__float__uint.cl\"\n");
+    g.generate_program_header(src2);
     generate_search_interval_lin(src2, floating, integral);
     generate_search_interval_lin_cuda_cc1(src2, floating, integral);
     generate_search_interval_dca(src2, floating, integral);
+    g.generate_program_footer(src2);
 
-    TS_ASSERT(src1.size() <= generator.estimated_program_size());
+    TS_ASSERT(src1.size() <= g.estimated_program_size());
     TS_ASSERT_EQUALS(src1, src2);
   }
 
   void test__search_interval__get_program__1()
   {
-    search_interval<cl_float, cl_uint> generator;
+    search_interval<cl_float, cl_uint> g;
 
     clxx::context c{ new_context() };
-    clxx::program p1{ generator.get_program(c) };
-    clxx::program p2{ generator.get_program(c) };
+    clxx::program p1{ g.get_program(c) };
+    clxx::program p2{ g.get_program(c) };
 
     TS_ASSERT(p1 == p2); // it shall return same handle
     TS_ASSERT(p1.get_reference_count() >= 3u); // p1, p2 and the memoized program
