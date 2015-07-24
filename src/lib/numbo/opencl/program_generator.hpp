@@ -35,33 +35,48 @@ public:
   /** // doc: generate_program_header() {{{
    * \todo Write documentation
    */ // }}}
-  virtual void generate_program_header(std::string& src) const
-  { src.append(line_directive(1)); src.append("\n"); }
+  virtual void
+  generate_program_header(std::string& src, clxx::context const& context) const
+  {
+    (void)context;
+    src.append(line_directive(1)); src.append("\n");
+  }
   /** // doc: generate_program_body() {{{
    * \todo Write documentation
    */ // }}}
-  virtual void generate_program_body(std::string& src) const = 0;
+  virtual void
+  generate_program_body(std::string& src, clxx::context const& context) const = 0;
   /** // doc: generate_program_footer() {{{
    * \todo Write documentation
    */ // }}}
-  virtual void generate_program_footer(std::string& src) const
-  { (void)src; }
+  virtual void
+  generate_program_footer(std::string& src, clxx::context const& context) const
+  {
+    (void)src; 
+    (void)context;
+  }
   /** // doc: estimated_program_size() {{{
    * \todo Write documentation
    */ // }}}
-  virtual size_t estimated_program_size() const { return 0; }
+  virtual size_t
+  estimated_program_size(clxx::context const& context) const
+  {
+    (void)context;
+    return 0;
+  }
   /** // doc: generate_program_header() {{{
    * \todo Write documentation
    */ // }}}
-  virtual void generate_program_source(std::string& src) const
+  virtual void
+  generate_program_source(std::string& src, clxx::context const& context) const
   {
-    size_t s = this->estimated_program_size();
-    if(s != 0)
-      src.reserve(src.size() + estimated_program_size());
+    size_t size = this->estimated_program_size(context);
+    if(size != 0)
+      src.reserve(src.size() + size);
 
-    generate_program_header(src);
-    generate_program_body(src);
-    generate_program_footer(src);
+    generate_program_header(src, context);
+    generate_program_body(src, context);
+    generate_program_footer(src, context);
   }
 };
 } } // end namespace numbo::opencl

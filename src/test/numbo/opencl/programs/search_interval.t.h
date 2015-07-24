@@ -125,17 +125,18 @@ public:
 
     std::string src1;
     search_interval<cl_float, cl_uint> g;
+    clxx::context c{ new_context() };
 
-    g.generate_program_source(src1);
+    g.generate_program_source(src1, c);
 
     std::string src2;
-    g.generate_program_header(src2);
+    g.generate_program_header(src2, c);
     generate_search_interval_lin(src2, floating, integral);
     generate_search_interval_lin_cuda_cc1(src2, floating, integral);
     generate_search_interval_dca(src2, floating, integral);
-    g.generate_program_footer(src2);
+    g.generate_program_footer(src2, c);
 
-    TS_ASSERT(src1.size() <= g.estimated_program_size());
+    TS_ASSERT(src1.size() <= g.estimated_program_size(c));
     TS_ASSERT_EQUALS(src1, src2);
   }
 

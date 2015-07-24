@@ -13,7 +13,7 @@
 #define NUMBO_OCL_PROGRAMS_SEARCH_INTERVAL_HPP_INCLUDED
 
 #include <numbo/opencl/util/type_to_string.hpp>
-#include <numbo/opencl/program_generator.hpp>
+#include <numbo/opencl/static_program_generator.hpp>
 
 namespace numbo { namespace opencl { namespace programs {
 template<typename SourceT> void
@@ -88,29 +88,37 @@ generate_search_interval_dca(SourceT& src, std::string const& value,
 
 template<typename ValueT, typename IndexT>
 class search_interval
-  : public program_generator
+  : public static_program_generator<search_interval<ValueT, IndexT> >
 {
+  typedef static_program_generator<search_interval<ValueT, IndexT> > Base;
 public:
-  size_t estimated_program_size() const { return 1800ul; }
+  inline static size_t
+  static_estimated_program_size(clxx::context const&)
+  { return 1800ul; }
 
-  std::string
-  program_name() const
+  inline static std::string const&
+  static_program_name()
   {
-    const std::string value = util::type_to_string<ValueT>::apply();
-    const std::string index = util::type_to_string<IndexT>::apply();
-    return std::string("search_interval<") + value + "," + index + ">";
+    static const std::string s{
+      "search_interval<" + util::type_to_string<ValueT>::apply() + "," +
+                           util::type_to_string<IndexT>::apply() + ">" 
+    };
+    return s;
   }
 
-  std::string
-  program_file() const
+  inline static std::string const&
+  static_program_file()
   {
-    const std::string value = util::type_to_string<ValueT>::apply();
-    const std::string index = util::type_to_string<IndexT>::apply();
-    return std::string("search_interval__") + value + "__" + index + program_file_suffix();
+    static const std::string s{
+      "search_interval__" + util::type_to_string<ValueT>::apply() + "__" +
+                            util::type_to_string<IndexT>::apply() + 
+                            Base::static_program_file_suffix()
+    };
+    return s;
   }
 
   void
-  generate_program_body(std::string& src) const
+  generate_program_body(std::string& src, clxx::context const&) const
   {
     const std::string value = util::type_to_string<ValueT>::apply();
     const std::string index = util::type_to_string<IndexT>::apply();

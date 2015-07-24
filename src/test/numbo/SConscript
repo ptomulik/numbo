@@ -12,6 +12,7 @@ tests = [
     'opencl/env.t.h',
     'opencl/util/type_to_string.t.h',
     'opencl/programs/search_interval.t.h',
+    'opencl/static_program_generator.t.h',
 #    'opencl/programs/ppfun_1d_nu.t.h',
 ]
 
