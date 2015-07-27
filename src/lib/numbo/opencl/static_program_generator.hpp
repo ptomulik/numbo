@@ -36,18 +36,9 @@ public:
    * \todo Write documentation
    */ // }}}
   inline static std::string const&
-  static_program_full_name()
+  static_program_name()
   {
-    static const std::string s{static_program_namespace() + "::" + Derived::static_program_name()};
-    return s;
-  }
-  /** // doc: static_program_name() {{{
-   * \todo Write documentation
-   */ // }}}
-  inline static std::string const&
-  static_program_file_suffix()
-  {
-    static const std::string s{".cl"};
+    static const std::string s{static_program_namespace() + "::" + Derived::static_program_classname()};
     return s;
   }
   /** // doc: static_program_dir() {{{
@@ -74,30 +65,24 @@ public:
   virtual size_t
   estimated_program_size(clxx::context const& context) const
   { return Derived::static_estimated_program_size(context); }
+  /** // doc: program_classname() {{{
+   * \todo Write documentation
+   */ // }}}
+  virtual std::string
+  program_classname() const
+  { return Derived::static_program_classname(); }
   /** // doc: program_name() {{{
    * \todo Write documentation
    */ // }}}
   virtual std::string
   program_name() const
-  { return Derived::static_program_name(); }
+  { return static_program_name(); }
   /** // doc: program_namespace() {{{
    * \todo Write documentation
    */ // }}}
   virtual std::string
   program_namespace() const
   { return static_program_namespace(); }
-  /** // doc: program_full_name() {{{
-   * \todo Write documentation
-   */ // }}}
-  virtual std::string
-  program_full_name() const
-  { return static_program_full_name(); }
-  /** // doc: program_file_suffix() {{{
-   * \todo Write documentation
-   */ // }}}
-  virtual std::string
-  program_file_suffix() const
-  { return static_program_file_suffix(); }
   /** // doc: program_file() {{{
    * \todo Write documentation
    */ // }}}

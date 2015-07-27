@@ -22,11 +22,24 @@ class program_generator
   : public clxx::program_lazy_generator
 {
 public:
+  /** // doc: program_classname() {{{
+   * \todo Write documentation
+   */ // }}}
+  virtual std::string program_classname() const = 0;
+  /** // doc: program_classname() {{{
+   * \todo Write documentation
+   */ // }}}
+  virtual std::string program_file() const = 0;
   /** // doc: program_namespace() {{{
    * \todo Write documentation
    */ // }}}
   virtual std::string program_namespace() const
   { return "numbo::opencl::programs"; }
+  /** // doc: program_name() {{{
+   * \todo Write documentation
+   */ // }}}
+  virtual std::string program_name() const
+  { return program_namespace() + "::" + program_classname(); }
   /** // doc: program_dir() {{{
    * \todo Write documentation
    */ // }}}

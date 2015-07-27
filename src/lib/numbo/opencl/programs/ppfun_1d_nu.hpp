@@ -22,9 +22,10 @@ class ppfun_1d_nu
 {
 public:
   static constexpr size_t program_source_estimated_size = 1ul;
-  std::string program_name() const
+  std::string static_program_classname() const
   {
-    return "ppfun_1d_nu__T__" + util::type_to_string<NumericT>::apply();
+    static const std::string s = "ppfun_1d_nu__T__" + util::type_to_string<NumericT>::apply();
+    return s;
   }
   void generate_program_source(std::string & src) const
   {

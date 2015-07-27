@@ -26,7 +26,7 @@ class numbo::opencl::static_program_generator_test_suite : public CxxTest::TestS
     static_estimated_program_size(clxx::context const&)
     { return 160ul; }
     inline static std::string const&
-    static_program_name()
+    static_program_classname()
     {
       static const std::string s{"g0"};
       return s;
@@ -46,17 +46,13 @@ public:
   {
     TS_ASSERT_EQUALS(G0::static_program_namespace(), "numbo::opencl::programs");
   }
+  void test__static_program_classname__1( )
+  {
+    TS_ASSERT_EQUALS(G0::static_program_classname(), "g0");
+  }
   void test__static_program_name__1( )
   {
-    TS_ASSERT_EQUALS(G0::static_program_name(), "g0");
-  }
-  void test__static_program_full_name__1( )
-  {
-    TS_ASSERT_EQUALS(G0::static_program_full_name(), "numbo::opencl::programs::g0");
-  }
-  void test__static_program_file_suffix__1( )
-  {
-    TS_ASSERT_EQUALS(G0::static_program_file_suffix(), ".cl");
+    TS_ASSERT_EQUALS(G0::static_program_name(), "numbo::opencl::programs::g0");
   }
   void test__static_program_file__1( )
   {
@@ -75,35 +71,24 @@ public:
     clxx::context c;
     TS_ASSERT_EQUALS(G0::static_estimated_program_size(c), 160ul);
   }
-  // non-static methods
-  void test__program_namespace__1( )
+  void test__program_classname__1( )
   {
-    clxx::program_generator const& g0{ G0{} };
-    TS_ASSERT_EQUALS(g0.program_namespace(), "numbo::opencl::programs");
+    program_generator const& g0{ G0{} };
+    TS_ASSERT_EQUALS(g0.program_classname(), "g0");
   }
   void test__program_name__1( )
   {
     clxx::program_generator const& g0{ G0{} };
-    TS_ASSERT_EQUALS(g0.program_name(), "g0");
-  }
-  void test__program_full_name__1( )
-  {
-    clxx::program_generator const& g0{ G0{} };
-    TS_ASSERT_EQUALS(g0.program_full_name(), "numbo::opencl::programs::g0");
-  }
-  void test__program_file_suffix__1( )
-  {
-    clxx::program_generator const& g0{ G0{} };
-    TS_ASSERT_EQUALS(g0.program_file_suffix(), ".cl");
+    TS_ASSERT_EQUALS(g0.program_name(), "numbo::opencl::programs::g0");
   }
   void test__program_file__1( )
   {
-    clxx::program_generator const& g0{ G0{} };
+    program_generator const& g0{ G0{} };
     TS_ASSERT_EQUALS(g0.program_file(), "g0.cl");
   }
   void test__program_dir__1( )
   {
-    clxx::program_generator const& g0{ G0{} };
+    program_generator const& g0{ G0{} };
     TS_ASSERT_EQUALS(g0.program_dir(), "numbo/opencl/programs");
   }
   void test__program_path__1( )

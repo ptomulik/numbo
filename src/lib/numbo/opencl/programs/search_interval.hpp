@@ -97,7 +97,7 @@ public:
   { return 1800ul; }
 
   inline static std::string const&
-  static_program_name()
+  static_program_classname()
   {
     static const std::string s{
       "search_interval<" + util::type_to_string<ValueT>::apply() + "," +
@@ -111,8 +111,7 @@ public:
   {
     static const std::string s{
       "search_interval__" + util::type_to_string<ValueT>::apply() + "__" +
-                            util::type_to_string<IndexT>::apply() + 
-                            Base::static_program_file_suffix()
+                            util::type_to_string<IndexT>::apply() + ".cl"
     };
     return s;
   }

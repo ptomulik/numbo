@@ -106,16 +106,16 @@ public:
     );
   }
 
-  void test__program_name__1()
+  void test__program_classname__1()
   {
     search_interval<cl_float, cl_uint> g;
-    TS_ASSERT_EQUALS(g.program_name(), "search_interval<float,uint>");
+    TS_ASSERT_EQUALS(g.program_classname(), "search_interval<float,uint>");
   }
 
   void test__program_file__1()
   {
     search_interval<cl_float, cl_uint> g;
-    TS_ASSERT_EQUALS(g.program_file(), "search_interval__float__uint" + g.program_file_suffix());
+    TS_ASSERT_EQUALS(g.program_file(), "search_interval__float__uint.cl");
   }
 
   void test__search_interval__generate_program_source__1()
